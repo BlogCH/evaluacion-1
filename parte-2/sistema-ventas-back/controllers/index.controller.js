@@ -16,6 +16,7 @@ exports.indexController = void 0;
 const index_database_1 = __importDefault(require("../database/index.database"));
 class IndexController {
     index(req, res) {
+        console.error(error);
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const databases = yield index_database_1.default.index();
@@ -23,6 +24,7 @@ class IndexController {
                 return res.json("API is located at /api");
             }
             catch (error) {
+                console.error(error);
                 return res.status(500).json({ mensaje: "Ocurrió un error" });
             }
         });

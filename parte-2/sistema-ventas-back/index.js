@@ -35,7 +35,7 @@ class Server {
     start() {
         // Agregar un listener con un callback para ejecutar el servicio
         this.app.listen(this.app.get("port"), () => {
-            console.log(`Server on port ${this.app.get("port")}`);
+        console.log(`Server on port ${this.app.get("port")}`);
         });
     }
 }

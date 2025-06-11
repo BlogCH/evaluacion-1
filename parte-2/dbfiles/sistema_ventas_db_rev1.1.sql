@@ -75,6 +75,7 @@ CREATE TABLE IF NOT EXISTS tbl_detalle_venta(
 INSERT INTO tbl_rol VALUES (1, 'Administrador', 'admin', 1);
 INSERT INTO tbl_rol VALUES (2, 'Ventas', 'ventas', 1);
 
-INSERT INTO tbl_usuario(cveUsuario, nombre, apellidos, username, password, email) VALUES(1, 'Eric', 'Domenzain', 'admin', '$2a$10$cqPJ31ODV4fACLWsrrx4QeQeMNdSjhfDAL8qk8Xr.IhrRxrjrEP6q', 'ericdomenzain@gmail.com');
+INSERT INTO tbl_usuario(cveUsuario, nombre, apellidos, username, password, email)
+VALUES(1, 'admin', 'Arredondo', 'admin', '$2a$10$cqPJ31ODV4fACLWsrrx4QeQeMNdSjhfDAL8qk8Xr.IhrRxrjrEP6q', 'cgar20001@gmail.com');
 
 INSERT INTO tbl_rol_usuario(cveRol, cveUsuario) VALUES(1, 1);

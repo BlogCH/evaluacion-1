@@ -7,7 +7,7 @@ VOLUME /tmp
 RUN rm -rf /usr/share/nginx/html/*
 
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY dist/billingApp /usr/share/nginx/html
+COPY sistema-ventas-front /usr/share/nginx/html
 COPY mime.types /etc/nginx/mime.types
 
 
