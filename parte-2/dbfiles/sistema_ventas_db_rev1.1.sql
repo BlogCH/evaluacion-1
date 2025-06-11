@@ -86,11 +86,5 @@ VALUES (
 )
 ON DUPLICATE KEY UPDATE username=VALUES(username);
 
-INSERT INTO tbl_rol_usuario (cveRol, cveUsuario)
-VALUES (1, 1)
-ON DUPLICATE KEY UPDATE cveRol=VALUES(cveRol);
 
 INSERT INTO tbl_rol_usuario(cveRol, cveUsuario) VALUES(1, 1);
-ALTER USER 'admin'@'%' IDENTIFIED WITH mysql_native_password BY 'admin';
-FLUSH PRIVILEGES;
-
