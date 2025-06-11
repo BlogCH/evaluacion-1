@@ -1,0 +1,68 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example_root_pwd
+      MYSQL_DATABASE: ventas_db
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: 12345678
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./dbfiles:/docker-entrypoint-initdb.d
+    networks:
+      - backend
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: example_root_pwd
+    ports:
+      - "8081:80"
+    depends_on:
+      - mysql
+    networks:
+      - backend
+
+  backend:
+    build:
+      context: ./sistema-ventas-back
+    container_name: backend-service
+    restart: always
+    environment:
+      DB_HOST: mysql
+      DB_USER: admin
+      DB_PASSWORD: 12345678
+      DB_NAME: ventas_db
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+    networks:
+      - backend
+
+  frontend:
+    build:
+      context: ./angular
+    container_name: frontend-service
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - backend
+
+networks:
+  backend:
+
+volumes:
+  mysql_data:

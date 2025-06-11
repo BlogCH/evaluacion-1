@@ -1,0 +1,19 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API de Prueba",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/hola": {
+      "get": {
+        "summary": "Saludo simple",
+        "responses": {
+          "200": {
+            "description": "Respuesta exitosa"
+          }
+        }
+      }
+    }
+  }
+}
