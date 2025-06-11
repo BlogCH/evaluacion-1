@@ -1,40 +1,21 @@
 FROM nginx:stable-alpine
 
- # use a volume is mor efficient and speed that filesystem
+# Usar volumen para mayor eficiencia
 VOLUME /tmp
 
-#Install web app on nginx server
+# Eliminar archivos por defecto de Nginx
 RUN rm -rf /usr/share/nginx/html/*
 
+# Configuración de Nginx
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY sistema-ventas-front /usr/share/nginx/html
 COPY mime.types /etc/nginx/mime.types
 
+# Copiar los archivos del frontend Angular al contenedor
+COPY sistema-ventas-front /usr/share/nginx/html
 
-# Instalamos OpenJDK 17
-RUN apk --no-cache add openjdk17-jre
+# Exponer el puerto 80 (por defecto de Nginx)
+EXPOSE 80
 
-# Definimos la variable de entorno JAVA_HOME
-ENV JAVA_HOME /usr/lib/jvm/java-17-openjdk
-ENV PATH $JAVA_HOME/bin:$PATH
-
-# Verificamos la instalación
-RUN java -version
-
-
-#Install java microservice
-ENV JAVA_OPTS=""
-ARG JAR_FILE
-ADD ${JAR_FILE} app.jar
-
-#Copy the init script
-COPY appshell.sh appshell.sh
-
-#The ports 7080 for backend-app and 80 for web app
-EXPOSE 80 7080
-
+# Script de inicio (opcional)
+COPY appshell.sh /appshell.sh
 ENTRYPOINT ["sh", "/appshell.sh"]
-
-
-
-
